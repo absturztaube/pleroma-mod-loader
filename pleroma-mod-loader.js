@@ -27,12 +27,5 @@ PleromaModLoader.prototype.loadMods = function() {
     }
 }
 
-PleromaModLoader.prototype.run = function() {
-    var self = this;
-    for(var mod of self.loadedMods) {
-        this.running.push(mod());
-    }
-}
-
 window.pleromaModLoader = new PleromaModLoader();
 window.pleromaModLoader.loadMods();
