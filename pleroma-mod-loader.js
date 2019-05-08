@@ -19,7 +19,6 @@ PleromaModLoader.prototype.loadMods = function() {
         console.log('load ' + mod);
         import(modPath) 
             .then(module => {
-                console.log(module);
                 self.loadedMods.push(module.default());
             })
             .catch(err => {
