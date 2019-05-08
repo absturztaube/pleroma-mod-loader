@@ -2,7 +2,7 @@
 function PleromaModLoader () {
     
     this.config = {
-        'modDirectory': './instance/pleroma-mods/',
+        'modDirectory': '/instance/pleroma-mods/',
         'mods': [
             'catify',
             'custom-styles',
