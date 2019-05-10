@@ -1,0 +1,64 @@
+
+.sticker-roster {
+  overflow-y: auto;
+  width: available;
+  max-height: 250px;
+  display: flex;
+  flex-flow: wrap;
+}
+
+label[title="Stickers"] {
+    font-size: 20px;
+}
+
+.sticker-tabs {
+    overflow-x: scroll;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;  /* IE 10+ */
+}
+.sticker-tabs::-webkit-scrollbar { /* WebKit */
+    width: 0;
+    height: 0;
+}
+
+.sticker-tabs .tab-wrapper {
+    height: 35px!important;
+}
+
+.panel-sticker-select .tab {
+    width: 50px!important;
+    height: 40px!important;
+    background-size: contain!important;
+    background-position: top!important;
+    background-repeat: no-repeat!important;
+    background-blend-mode: color-burn;
+}
+
+.panel-sticker-select .tab.active {
+    background-blend-mode: unset;
+}
+
+.tile {
+  display: inline-block;
+  height: 78px;
+  width: 78px;
+  mask-size: contain;
+  mask-position: center;
+  mask-repeat: no-repeat;
+  background-blend-mode: color-burn;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: gray;
+}
+
+.tile:hover {
+  background-blend-mode: unset;
+}
+
+.sticker-footer {
+    width: 100%;
+    display: inline-block;
+    padding: 5px;
+    font-size: smaller;
+}
