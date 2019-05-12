@@ -4,13 +4,13 @@ Script that loads mods into pleroma
 
 ## Usage
 
+copy `pleroma-mod-loader.js` to your static directory (`priv/static/instance/` for example)
+
 Add `<script type="text/javascript" src="/path/to/pleroma-mod-loader.js"></script>` to your index.html in the static directory
 
 copy `pleroma-mod-config.json.example` to `pleroma-mod-config.json`
 
 ## Configuration
-
-
 
 set `modDirectory` in `pleroma-mod-config.json` to the directory where your mods are located
 
