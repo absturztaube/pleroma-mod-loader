@@ -1,3 +1,4 @@
+/*jslint browser, es6, this, fudge */
 
 function PleromaModLoader () {
     this.config = {
@@ -5,26 +6,62 @@ function PleromaModLoader () {
         'mods': [
             'catify',
             'custom-styles',
-            'stickers',
+            'stickers'
         ]
     };
+    this.loadConfig();
     this.loadedMods = {};
     this.classes = {};
 }
 
 PleromaModLoader.prototype.loadMods = function() {
     var self = this;
-    for(var mod of self.config.mods) {
+    for (var mod of self.config.mods) {
         var modObject = new PleromaMod(mod);
         modObject.include();
         self.loadedMods[mod] = modObject;
     }
 };
 
+PleromaModLoader.prototype.loadHTML = function(method, url, callback, async) {
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.overrideMimeType('text/xml');
+    xmlhttp.onreadystatechange = function () {
+        if ( this.readyState == 4 && this.status == 200 ) {
+            callback(this);
+        }
+    };
+    xmlhttp.open(method, url, callback, async);
+    xmlhttp.send();
+};
+
+PleromaModLoader.prototype.loadJSON = function(method, url, callback, async) {
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.overrideMimeType('text/json');
+    xmlhttp.onreadystatechange = function () {
+        if ( this.readyState == 4 && this.status == 200 ) {
+            this.json = JSON.parse(this.responseText);
+            callback(this);
+        }
+    };
+    xmlhttp.open(method, url, callback, async);
+    xmlhttp.send();
+};
+
+PleromaModLoader.prototype.loadConfig = function () {
+    var self = this;
+    var url = '/instance/pleroma-mod-config.json';
+    self.loadJSON('GET', url, function(response) {
+        for(var key in response.json) {
+            self.config[key] = response.json[key];
+        }
+    }, false);
+};
+
 PleromaModLoader.prototype.registerClass = function(className, object) {
     var self = this;
     self.classes[className] = object;
-}
+};
 
 PleromaModLoader.prototype.waitUntilReady = function () {
     var self = this;
@@ -91,7 +128,7 @@ PleromaMod.prototype.include = function () {
     console.log('loading ' + self.name);
     var body = document.getElementsByTagName('body')[0];
     var script = document.createElement('script');
-    script.src = window.__pleromaModLoader.config.modDirectory + 'pleroma-mod-' + self.name + '.js';
+    script.src = window.__pleromaModLoader.config.modDirectory + 'pleroma-mod-' + self.name + '/mod.js';
     script.type = 'text/javascript';
     script.onload = function () {
         self.modLoaded();

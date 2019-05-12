@@ -1,0 +1,8 @@
+{
+    "modDirectory": "/instance/pleroma-mods",
+    "mods": [
+        "catify",
+        "custom-styles",
+        "stickers"
+    ]
+}
